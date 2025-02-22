@@ -13,16 +13,28 @@ const ThemeContext = createContext<{
   setTheme: () => null,
 });
 
+interface ThemeProviderProps {
+  children: React.ReactNode;
+  attribute: string;
+  defaultTheme: string;
+  enableSystem: boolean;
+  disableTransitionOnChange: boolean;
+}
+
 export function ThemeProvider({
   children,
+  attribute,
+  defaultTheme,
+  enableSystem,
+  disableTransitionOnChange,
   ...props
-}: {
-  children: React.ReactNode
-}) {
+}: ThemeProviderProps) {
   return (
     <NextThemesProvider
-      attribute="class"
-      defaultTheme="dark"
+      attribute={attribute}
+      defaultTheme={defaultTheme}
+      enableSystem={enableSystem}
+      disableTransitionOnChange={disableTransitionOnChange}
       value={{
         light: "light",
         dark: "dark",
